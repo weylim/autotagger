@@ -16,7 +16,11 @@ import org.jsoup.nodes.Document;
  * @author WeeYong
  */
 public class Texter {
-    private MaxentTagger tagger = new MaxentTagger("C:\\Users\\WeeYong\\Documents\\autotagger\\lib\\models\\english-bidirectional-distsim.tagger"); // Initialize the tagger  
+	
+	static String TagPathName = "/Users/Saber-Chan/Documents/autotagger/lib/models/english-bidirectional-distsim.tagger";
+								
+	
+    private MaxentTagger tagger = new MaxentTagger(TagPathName); // Initialize the tagger  
     
     /** Append newline for each <p> tag. Remove all HTML tags. Collapse multiple whitespace to just 1 space.
      * @param text text to be cleaned

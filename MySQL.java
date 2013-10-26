@@ -13,6 +13,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+
+
 public class MySQL {
     private Connection con = null;
     
@@ -49,10 +51,15 @@ public class MySQL {
         Statement statement = con.createStatement();
         System.out.println("Select * from " + table + " limit " + id + ",1");
         Sample sample;
-        try (ResultSet result = statement.executeQuery("Select * from " + table + " limit " + id + ",1")) {
-            result.first();
-            sample = new Sample(result.getInt("Id"), result.getString("Title"), result.getString("Body"), result.getString("Tags"));
-        }
+        
+        
+        	ResultSet result = statement.executeQuery("Select * from " + table + " limit " + id + ",1");
+	        result.first();
+	        sample = new Sample(result.getInt("Id"), result.getString("Title"), result.getString("Body"), result.getString("Tags"));
+	        result.close();
+        
+
+
         return sample;
     }
     
