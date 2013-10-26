@@ -21,6 +21,7 @@ public class MySQL {
         System.out.println(stuff);
     }
     
+    /** Connects to MySQL with given parameters */
     public boolean connectDB(String user, String password, String host, String database) throws SQLException {
         try {
             // Load the JDBC driver
@@ -36,12 +37,12 @@ public class MySQL {
         return true;
     }
     
-    
+    /** Disconnects from MySQL */
     public void disconnect() throws SQLException {
         con.close();
     }
     
-
+    /** Read a sample from database */
     public Sample readSingle(String table, int id) throws SQLException{ 
         if (!con.isValid(0)) {System.out.println("No connection!");}
         

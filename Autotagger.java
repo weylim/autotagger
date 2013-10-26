@@ -2,6 +2,8 @@
 package autotagger;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  *
@@ -27,7 +29,11 @@ public class Autotagger {
             System.out.println(body);
             System.out.println(tagged);
             
-             
+            HashSet<String> NNPs = texter.getNNPs(tagged);
+            for (String NNP : NNPs) {
+                System.out.println(NNP);
+            }
+            
         } catch (SQLException ex) {
             System.out.println(ex.toString());
         }

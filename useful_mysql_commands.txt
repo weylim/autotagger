@@ -1,0 +1,6 @@
+
+// count number of records with its 'Title' field containing ".net". Case insensitive. 
+select count(*) from train15 where Title like '%.net%';
+
+// duplicate table
+create table newtable like database.oldtable; insert newtable select * from oldtable limit 0,10;
