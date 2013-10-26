@@ -1,10 +1,6 @@
 
 package autotagger;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashSet;
-
 /**
  *
  * @author WeeYong
