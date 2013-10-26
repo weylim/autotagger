@@ -37,11 +37,14 @@ public class Texter {
         String tagged = tagger.tagString(text); 
         return tagged;
     }
-        
+    
+    /** Grab out all candidate Noun Phrases from a tagged document/string */
     public HashSet<String> getNNPs(String tagged) {
        HashSet<String> NNPs = new HashSet<String>() {};
-       String[] words = tagged.split("\\s+");
+       String[] words = tagged.split("\\s+"); // explode via blankspaces to words array
        String temp = "";
+       
+       // search for consecutive words with NN* ending and store these phrases into NNPs
        for (String word: words) {
            if(word.matches(".*_NN\\w?")) {
                word = word.replace("\\","");
