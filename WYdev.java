@@ -1,20 +1,21 @@
 package autotagger;
 
 import java.sql.SQLException;
-import java.util.HashSet;
 /**
  * @author WeeYong
  */
 public class WYdev {
-	
-	static String DBName = "Original_DB";
+        
+    static String DBName = "keywords";
     
-	public boolean dev() {
+    public boolean dev() {
+        Weka naivesBayes = new Weka();
+        
         MySQL mysql = new MySQL(); // init database interface object
         try {
             // grab a sample
             mysql.connectDB("root", "password", "localhost", DBName);
-            Sample sample = mysql.readSingle("train", 15);
+            Sample sample = mysql.readSingle("train1000", 15);
             System.out.println(sample.body);
             
             // print screen cleaned sample
@@ -26,11 +27,6 @@ public class WYdev {
             
             
             ParseDoc.ParseDoc(tagged);
-            
-//            HashSet<String> NNPs = texter.getNNPs(tagged);
-//            for (String NNP : NNPs) {
-//                System.out.println(NNP);
-//            }
             
         } catch (SQLException ex) {
             System.out.println(ex.toString());

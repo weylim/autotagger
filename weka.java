@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package autotagger;
 
 import java.io.BufferedReader;
@@ -18,7 +14,7 @@ import weka.core.Instances;
  *
  * @author WeeYong
  */
-public class weka {
+public class Weka {
     public Classifier classifier;
     
     public boolean train(String trainFile) {
@@ -36,10 +32,10 @@ public class weka {
             classifier.buildClassifier(trainingInstances);
         }
         catch (IOException ex) {
-            Logger.getLogger(weka.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Weka.class.getName()).log(Level.SEVERE, null, ex);
         }
         catch (Exception ex) {
-            Logger.getLogger(weka.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Weka.class.getName()).log(Level.SEVERE, null, ex);
         }
         return true;
     }
@@ -66,11 +62,11 @@ public class weka {
             System.out.println(eval1.toSummaryString("\nResults\n======\n", false));
         } 
         catch (FileNotFoundException ex) {
-            Logger.getLogger(weka.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Weka.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(weka.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Weka.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(weka.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Weka.class.getName()).log(Level.SEVERE, null, ex);
         }
         return true;
     }

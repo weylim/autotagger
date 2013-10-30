@@ -16,9 +16,7 @@ import org.jsoup.nodes.Document;
  * @author WeeYong
  */
 public class Texter {
-	
-	static String TagPathName = "/Users/Saber-Chan/Documents/autotagger/lib/models/english-bidirectional-distsim.tagger";
-								
+    static String TagPathName = "C:\\Users\\WeeYong\\Documents\\autotagger\\lib\\models\\english-bidirectional-distsim.tagger";
 	
     private MaxentTagger tagger = new MaxentTagger(TagPathName); // Initialize the tagger  
     

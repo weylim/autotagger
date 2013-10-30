@@ -8,61 +8,48 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Stack;
 
 public class ParseDoc {
-
 	
-	public static void ParseDoc(String MsgBody)
-	{
-		System.out.println("In ParseDoc");
-        
-        List<TagObject> myObjList = new ArrayList<TagObject>();
-        
-        
+    public static void ParseDoc(String MsgBody) {      
+        List<Record> records = new ArrayList<Record>();
+
         String[] words = MsgBody.split("\\s+"); // explode via blankspaces to words array
-        String temp = "";
+        String phrase = "";
         int Count = 0;
         int WordCounter = 0;
-        int Position = -1;
-        
+        //int Position = -1;
         int MsgLen = words.length;
-        
-        
-        // search for consecutive words with NN* ending and store these phrases into NNPs
-        for (String word: words) {
-        	
-            if(word.matches(".*_NN\\w?")) {
-                word = word.replace("\\","");
-                temp += '-' + word.substring(0, word.lastIndexOf("_"));
+                
+        // For each NN* phrases, instantiate a record
+        for (int i = 0; i < words.length; i++) { // for (String word: words) {
+            if(words[i].matches(".*_NN\\w?")) {
+                words[i] = words[i].replace("\\","");
+                phrase += '-' + words[i].substring(0, words[i].lastIndexOf("_"));
                 
                 WordCounter++;
-                if (Position == -1)
-                	Position = Count;
+                //if (Position == -1)
+                    //Position = Count;
             }
-            else if (!temp.isEmpty()) {
-
-            	TagObject newObject;	//New Object
-                newObject = new TagObject(temp, Position, 0, temp.length(), WordCounter, ((float)Position / MsgLen));
-	       		myObjList.add(newObject);
-                
-	       		temp = ""; // clear temp
-	       		Position = -1;
-	       		WordCounter = 0;
-            }
-            
+            else if (!phrase.isEmpty()) {
+                int Position = i - WordCounter;
+                //Record(String i_phrase, int i_absPosition, float i_relativePosition, int i_TF, int i_numChars, int i_numWords) 
+                Record record = new Record(phrase, Position, 0, phrase.length(), WordCounter, ((float)Position / MsgLen));
+                records.add(record);
+                phrase = ""; // clear temp
+                Position = -1; // re-init position for next phrase
+                WordCounter = 0;
+            }      
             Count++;
         }
         
-        System.out.println(myObjList.size());
+        
         
         GetTermFreq(myObjList);
-        
         for (int i = 0; i < myObjList.size(); i++)
         	System.out.println(myObjList.get(i).TagTerm);
         
